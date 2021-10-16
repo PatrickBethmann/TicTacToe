@@ -27,3 +27,31 @@
     justify-content: center;
     align-items: center;
 }
+
+#winnerDisplay {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+}
+
+#settings {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 300px;
+    height: 100vh;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+#settings input {
+    height: 20px;
+}
+
+.button {
+    height: 30px;
+}

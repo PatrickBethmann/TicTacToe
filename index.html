@@ -11,6 +11,22 @@
 </head>
 
 <body>
+    <div id="settings">
+        <div>
+            <label for="name-player1">Player 1:</label>
+            <input id="name-player1" type="text">
+        </div>
+        <div>
+            <label for="name-player2">Player 2:</label>
+            <input id="name-player2" type="text">
+        </div>
+        <div>
+            <label for="multiplayer">Multiplayer</label>
+            <input type="checkbox" id="multiplayer">
+        </div>
+        <button id="start-game" class="button" onclick="game.startGame()">Start Game</button>
+    </div>
+    <h1 id="winnerDisplay"></h1>
     <div class="board">
         <div class="field"></div>
         <div class="field"></div>
@@ -22,6 +38,7 @@
         <div class="field"></div>
         <div class="field"></div>
     </div>
+
 </body>
 
 </html>

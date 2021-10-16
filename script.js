@@ -40,25 +40,41 @@ const gameboard = (() => {
 
 const Player = (name) => {
     Player.numberOfPlayers = Player.numberOfPlayers + 1 || 0;
-    console.log(Player.numberOfPlayers);
     Player.signs = ["X", "O", "H", "S"];
     const sign = Player.signs[Player.numberOfPlayers];
-    const score = 0;
     function place(x, y) {
         gameboard.place(this.sign, x, y);
     }
 
-    return { name, score, sign, place };
+    return { name, sign, place };
 };
 
-const displayController = (() => {})();
+const displayController = (() => {
+    const winnerDisplay = document.querySelector("#winnerDisplay");
+
+    const displayWinner = (winner) => {
+        winnerDisplay.textContent = `Congratulations! ${winner.name} has won!`;
+    };
+
+    return { displayWinner };
+})();
 
 const game = (() => {
-    const player1 = Player("Player 1");
-    const player2 = Player("Player 2");
-    let currentPlayer = player1;
-    let roundsPlayed = 0;
-    let gameEnd = false;
+    let player1;
+    let player2;
+    let currentPlayer;
+    let roundsPlayed;
+    let gameEnd;
+
+    const startGame = () => {
+        player1 = Player(document.querySelector("#name-player1").textContent);
+
+        player2 = Player(document.querySelector("#name-player2").textContent);
+
+        roundsPlayed = 0;
+        currentPlayer = player1;
+        gameEnd = false;
+    };
 
     const makeMove = (row, column) => {
         if (gameEnd) {
@@ -70,6 +86,7 @@ const game = (() => {
         if (roundsPlayed > 4) {
             if (checkForWinner()) {
                 console.log("The Winner is", currentPlayer.name);
+                displayController.displayWinner(currentPlayer);
                 gameEnd = true;
             }
             if (checkForTie()) {
@@ -189,7 +206,6 @@ const game = (() => {
             winPossible = true;
         }
 
-        console.log(!winPossible);
         return !winPossible;
     };
 
@@ -201,5 +217,5 @@ const game = (() => {
         }
     }
 
-    return { makeMove };
+    return { makeMove, startGame };
 })();
